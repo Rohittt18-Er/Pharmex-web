@@ -1,13 +1,12 @@
-// User Roles
-export const ROLE_OWNER = 'owner';
-export const ROLE_ADMIN = 'admin';
-export const ROLE_STAFF = 'staff';
+import { ROLES } from '@/constants';
 
-export type UserRole = typeof ROLE_OWNER | typeof ROLE_ADMIN | typeof ROLE_STAFF;
+export type UserRole = typeof ROLES[keyof typeof ROLES];
+
 
 export interface User {
   _id: string;
   email: string;
+  username: string;
   full_name?: string;
   role: UserRole;
   is_active: boolean;
@@ -25,6 +24,7 @@ export interface LoginRequest {
 
 export interface RegisterRequest {
   email: string;
+  username: string;
   password: string;
   full_name?: string;
   role: 'owner'; // Only owners register publicly
